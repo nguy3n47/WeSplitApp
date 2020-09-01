@@ -1,0 +1,112 @@
+﻿<Window x:Class="WeSplit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeSplit"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="WeSplit" Icon="cash.ico" UseLayoutRounding="True" RenderOptions.BitmapScalingMode="HighQuality" Height="780" Width="1370" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:ImagePatchRelativeToAbsoluteConverter x:Key="imagePathConverter"/>
+    </Window.Resources>
+    <DockPanel Name="_main" LastChildFill="True">
+        <Frame x:Name="_mainWindow" NavigationUIVisibility="Hidden"></Frame>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Name="TopBar" Height="40" DockPanel.Dock="Top" Background="#FF34EDB5">
+            <Label Content="We Split App" Height="40" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Left" Foreground="#DDFFFFFF" Margin="10,0,0,0"/>
+        </StackPanel>
+        <Grid Name="Menu" Width="240" Background="#FFD0D0D0">
+            <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 120 0 0" Background="#FF32F4B9" Width="7" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
+            </materialDesign:TransitioningContent>
+            <ListView Height="650.4" Name="itemMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top" VerticalContentAlignment="Bottom" MouseLeftButtonUp="itemMenu_MouseLeftButtonUp">
+                <ListViewItem Height="60">
+                    <Button x:Name="ButtonOpenMenu" Height="44" Width="44" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF404040" Click="ButtonOpenMenu_Click" Panel.ZIndex="1" VerticalAlignment="Center">
+                        <!--<materialDesign:PackIcon Kind="Menu" Width="35" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>-->
+                        <Image Source="Assets/063-squares.png" Width="35" Height="35"></Image>
+                    </Button>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="Plus" Height="25" Width="25" Margin="10"/>-->
+                        <Button x:Name="ButtonNew" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF404040" Click="ButtonNew_Click" Width="44" Height="44">
+                            <!--<materialDesign:PackIcon Name="NewIcon" Kind="Plus" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>-->
+                            <Image Source="Assets/042-route.png" Width="35" Height="35"></Image>
+                        </Button>
+                        <TextBlock Text="New trip" VerticalAlignment="Center" FontSize="16"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="HomeOutline" Height="25" Width="25" Margin="10"/>-->
+                        <Border BorderBrush="{x:Null}" Panel.ZIndex="1" Width="44" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!--<materialDesign:PackIcon Name="HomeIcon" Kind="HomeOutline" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF404040"/>-->
+                            <Image Source="Assets/039-map.png" Width="35" Height="35"></Image>
+                        </Border>
+                        <TextBlock Text="Trip" VerticalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="HeartOutline" Height="25" Width="25" Margin="10"/>-->
+                        <Border Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="1" Width="44" Height="44">
+                            <!--<materialDesign:PackIcon Name="HeartIcon" Kind="HeartOutline" Width="35" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF404040"/>-->
+                            <Image Source="Assets/057-placeholder.png" Width="35" Height="35"></Image>
+                        </Border>
+                        <TextBlock Text="Finish" VerticalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="FormatListChecks" Height="25" Width="25" Margin="10"/>-->
+                        <Border Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="1" Width="44" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!--<materialDesign:PackIcon Name="ShopIcon" Kind="FormatListChecks" Width="35" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF404040"/>-->
+                            <Image Source="Assets/031-notebook.png" Width="35" Height="35"></Image>
+                        </Border>
+                        <TextBlock Text="Note book" VerticalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="InformationVariant" Height="25" Width="25" Margin="10"/>-->
+                        <Border Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="1" Width="44" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!--<materialDesign:PackIcon Name="AboutIcon" Kind="InformationVariant" Width="35" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF404040"/>-->
+                            <Image Source="Assets/060-info.png" Width="35" Height="35"></Image>
+                        </Border>
+                        <TextBlock Text="About" VerticalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="Help" Height="25" Width="25" Margin="10"/>-->
+                        <Border Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="1" Width="44" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!--<materialDesign:PackIcon Name="HelpIcon" Kind="Help" Width="35" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF404040"/>-->
+                            <Image Source="Assets/080-chat-1.png" Width="35" Height="35"></Image>
+                        </Border>
+                        <TextBlock Text="Help" VerticalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" VerticalContentAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <!--<materialDesign:PackIcon Kind="CogOutline" Height="25" Width="25" Margin="10"/>-->
+                        <Border Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="1" Width="44" Height="44">
+                            <!--<materialDesign:PackIcon Name="SettingIcon" Kind="CogOutline" Width="35" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF404040"/>-->
+                            <Image Source="Assets/041-settings-1.png" Width="35" Height="35"></Image>
+                        </Border>
+                        <TextBlock Text="Setting" VerticalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </Grid>
+        <Grid Name="Trip">
+            <Frame x:Name="_trip" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
+    </DockPanel>
+</Window>
